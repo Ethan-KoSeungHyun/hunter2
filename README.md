@@ -46,6 +46,7 @@ roslaunch hunter2_gazebo hunter2_empty_world.launch
 ```
 
 ```bash
+# Final
 cd hunter_ws
 source devel/setup.bash
 
