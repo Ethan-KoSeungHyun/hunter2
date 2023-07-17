@@ -36,6 +36,7 @@ source devel/setup.bash
 
 roslaunch hunter2_base display_xacro.launch
 ```
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d004d024-a483-42cc-9eff-ef41eed51838/Untitled.png)
 
 ```bash
 # Gazebo
@@ -44,7 +45,7 @@ source devel/setup.bash
 
 roslaunch hunter2_gazebo hunter2_empty_world.launch
 ```
-
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd9913bd-d201-45f2-8445-1ed59307fcc5/Untitled.png)
 ```bash
 # Final
 cd hunter_ws
@@ -52,3 +53,4 @@ source devel/setup.bash
 
 roslaunch hunter2_gazebo hunter2_OS.launch
 ```
+![Screenshot from 2023-07-09 21-00-57.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e558fcd5-a76f-458c-a8d8-79eeed5cf4d0/Screenshot_from_2023-07-09_21-00-57.png)
