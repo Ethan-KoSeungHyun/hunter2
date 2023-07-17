@@ -20,6 +20,7 @@ sudo apt install ros-noetic-ackermann-steering-controller -y
 mkdir hunter_ws
 cd hunter_ws
 mkdir src
+cd src
 
 git clone https://github.com/Ethan-KoSeungHyun/hunter2.git
 ```
