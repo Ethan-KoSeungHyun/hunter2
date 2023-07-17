@@ -2,12 +2,8 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hunter2_base">
-  
-
-
-
- <!-- Base -->
+<robot
+  name="hunter2_base">
   <link
     name="base_link">
     <inertial>
@@ -48,8 +44,6 @@
       </geometry>
     </collision>
   </link>
-
-<!-- Left wheel & steer (front)-->
   <link
     name="front_steer_left_link">
     <inertial>
@@ -106,7 +100,6 @@
       effort="0"
       velocity="0" />
   </joint>
-
   <link
     name="front_left_wheel_link">
     <inertial>
@@ -161,8 +154,6 @@
       xyz="0 0 -1" />
       <dynamics damping="0.0" friction="15"/>
   </joint>
-
-<!-- Right wheel & steer (front) -->
   <link
     name="front_steer_right_link">
     <inertial>
@@ -219,7 +210,6 @@
       effort="0"
       velocity="0" />
   </joint>
-
   <link
     name="front_right_wheel_link">
     <inertial>
@@ -274,8 +264,6 @@
       xyz="0 0 -1" />
       <dynamics damping="0.0" friction="15"/>
   </joint>
-
-<!-- Left wheel & steer (Rear) -->
   <link
     name="left_rear_link">
     <inertial>
@@ -330,7 +318,6 @@
       xyz="0 0 -1" />
      <dynamics damping="0.0" friction="15"/>
   </joint>
-
   <link
     name="right_rear_link">
     <inertial>
@@ -385,8 +372,6 @@
       xyz="0 0 -1" />
      <dynamics damping="0.0" friction="15"/>
   </joint>
-
-  <!-- Right wheel & steer (Rear) -->
   <link
     name="front_steer_link">
     <inertial>
@@ -443,10 +428,9 @@
       effort="0"
       velocity="0" />
   </joint>
-
   <link
     name="rear_wheel_link">
-    <inertial>
+<inertial>
       <origin
         xyz="-0.02 0.0031269 -0.12735"
         rpy="0 0 0" />
@@ -497,54 +481,6 @@
     <dynamics damping="0.0" friction="15"/>
   </joint>
   
-
-
-
-    
-    <!-- vehicle to LIDAR -->
-    <link name="Base_to_Link1">
-      <inertial>
-        <mass value="0.83"/>
-        <origin xyz="0 0 0.03585"/>
-        <inertia ixx="${(0.83 * (3.0*0.0516*0.0516 + 0.0717*0.0717)) / 12.0}" ixy="0" ixz="0"
-          iyy="${(0.83 * (3.0*0.0516*0.0516 + 0.0717*0.0717)) / 12.0}" iyz="0"
-          izz="${0.5 * 0.83 * (0.0516*0.0516)}"/>
-      </inertial>
-      <visual>
-        <origin xyz="0 0 -0.3" rpy="0 0 0"/>
-        <geometry>
-          <box size="0.001 0.001 0.001" />
-        </geometry>
-        <material name="orange"/>
-      </visual>
-      
-    </link>
-
-    <joint name="Base_J1_L1" type="fixed">
-      <parent link="base_link"/>
-      <child link="Base_to_Link1"/>
-      <origin
-      xyz="0 0 -0.3"  
-      
-      rpy="0 0 0" />
-    </joint>
-    
-
-    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
-    <xacro:VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="false">
-    <origin xyz="0.2 0 0.5" rpy="0 0 0" />
-    </xacro:VLP-16>
-
-
-
-
-
-
-    
-    
-
-  <!-- gazebo  -->
-
   <gazebo reference="front_left_wheel_link"> 
     <mu1>0.8</mu1>
     <mu2>0.8</mu2>
@@ -576,7 +512,7 @@
       <material>Gazebo/Grey </material>
       </gazebo>
   <gazebo reference="left_rear_link"> 
-    <mu1>0.8</mu1>
+      <mu1>0.8</mu1>
     <mu2>10</mu2>
     <kp>10000000.0</kp>
     <kd>1.0</kd>
@@ -584,7 +520,7 @@
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
       <material>Gazebo/Grey </material>
-    </gazebo>
+      </gazebo>
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -593,91 +529,7 @@
     </plugin>
   </gazebo>
 
-<!-- Gazebo requires the velodyne_gazebo_plugins package -->
-    <gazebo reference="VLP-16">
-      <!-- <xacro:if value="${gpu}">
-        <sensor type="gpu_ray" name="${name}-VLP16">
-          <pose>0 0 0 0 0 0</pose>
-          <visualize>false</visualize>
-          <update_rate>${hz}</update_rate>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>${samples}</samples>
-                <resolution>1</resolution>
-                <min_angle>${min_angle}</min_angle>
-                <max_angle>${max_angle}</max_angle>
-              </horizontal>
-              <vertical>
-                <samples>${lasers}</samples>
-                <resolution>1</resolution>
-                <min_angle>-${15.0*M_PI/180.0}</min_angle>
-                <max_angle> ${15.0*M_PI/180.0}</max_angle>
-              </vertical>
-            </scan>
-            <range>
-              <min>${collision_range}</min>
-              <max>${max_range+1}</max>
-              <resolution>0.001</resolution>
-            </range>
-            <noise>
-              <type>gaussian</type>
-              <mean>0.0</mean>
-              <stddev>0.0</stddev>
-            </noise>
-          </ray>
-          <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_gpu_laser.so">
-            <topicName>${topic}</topicName>
-            <frameName>${name}</frameName>
-            <min_range>${min_range}</min_range>
-            <max_range>${max_range}</max_range>
-            <gaussianNoise>${noise}</gaussianNoise>
-          </plugin>
-        </sensor>
-      </xacro:if> -->
-      <!-- <xacro:unless value="${gpu}"> -->
-        <sensor type="ray" name="velodyne-VLP16">
-          <pose>0 0 0 0 0 0</pose>
-          <visualize>false</visualize>
-          <update_rate>10</update_rate>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1875</samples>
-                <resolution>1</resolution>
-                <min_angle>-3.1415926535897931</min_angle>
-                <max_angle>3.1415926535897931</max_angle>
-              </horizontal>
-              <vertical>
-                <samples>16</samples>
-                <resolution>1</resolution>
-                <min_angle>-15.0*3.1415926535897931/180.0</min_angle>
-                <max_angle> 15.0*3.1415926535897931/180.0</max_angle>
-              </vertical>
-            </scan>
-            <range>
-              <min>0.3</min>
-              <max>130.0+1</max>
-              <resolution>0.001</resolution>
-            </range>
-            <noise>
-              <type>gaussian</type>
-              <mean>0.0</mean>
-              <stddev>0.0</stddev>
-            </noise>
-          </ray>
-          <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
-            <topicName>/velodyne_points</topicName>
-            <frameName>velodyne</frameName>
-            <min_range>0.9</min_range>
-            <max_range>130.0</max_range>
-            <gaussianNoise>0.008</gaussianNoise>
-          </plugin>
-        </sensor>
-      
-    </gazebo>
 
-  
+
+
 </robot>
-
-
