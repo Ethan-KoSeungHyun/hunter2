@@ -13,6 +13,7 @@ sudo apt-get install ros-noetic-gazebo-ros-control -y
 sudo apt-get install ros-noetic-joint-state-publisher-gui -y
 sudo apt-get install ros-noetic-rqt-robot-steering -y
 sudo apt-get install ros-noetic-hector-gazebo-plugins -y
+sudo apt install ros-noetic-ackermann-steering-controller -y
 ```
 
 ```bash
