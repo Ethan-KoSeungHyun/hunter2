@@ -10,7 +10,7 @@
       <center>37.550368 127.075002</center>
       <world_size>100</world_size>
       <map_type>satellite</map_type>
-      <api_key>AIzaSyD6FJf_IqfwLirm5UVfVVtrfIcX8Rlq04I</api_key>
+      <!-- <api_key><API KEY HERE></api_key> -->
       <use_cache>True</use_cache>
     </plugin>
   </world>

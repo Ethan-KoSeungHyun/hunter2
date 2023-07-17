@@ -2,7 +2,7 @@
 <launch>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-  <arg name="world_name" value="$(find hunter2_gazebo)/world/ground.world"/> 
+  <!-- <arg name="world_name" value="$(find hunter2_gazebo)/world/ground.world"/>  -->
         <arg name="gui" default="true"/>
     <!-- <arg name="world_name" value="$(find hunter2_gazebo)/world/traffic.world"/>  -->
   </include>
