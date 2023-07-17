@@ -1,6 +1,6 @@
 # hunter2
-Hunter2 Gazebo with GPS, IMU, Camera, Lidar (Ouster 64ch)
-Ubuntu 20.04 Ros1 Noetic
+Hunter2 Gazebo with GPS, IMU, Camera, Lidar (Ouster 64ch),
+ Ubuntu 20.04 Ros1 Noetic
 
 
 
